@@ -54,6 +54,11 @@ resource "aws_ecs_task_definition" "hello" {
     // env variables that can be pass to the container
     environment = [{"name": "ENVIRONMENT", "value": "${var.environment}"}] //this envs will be pass to the container to select deploy enviroment
     // no port needed since it connects to the client trouhg internal network
+    portMappings = [{
+      protocol      = "tcp"
+      containerPort = tonumber(var.server_container_port) //--------------------- only one uses this
+      hostPort      = tonumber(var.server_container_host_port)
+    }]
     logConfiguration = {
       logDriver = var.hello_log_driver
       options = {

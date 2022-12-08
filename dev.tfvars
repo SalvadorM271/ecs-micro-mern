@@ -26,6 +26,8 @@ client_container_host_port = "80" //has to be the same bc network mode
 client_log_driver = "awslogs"
 hello_container_image = "153042419275.dkr.ecr.us-east-2.amazonaws.com/backend"
 hello_log_driver = "awslogs"
+server_container_port = "5000"
+server_container_host_port = "5000"
 
 
 //service
