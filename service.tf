@@ -17,6 +17,10 @@ resource "aws_ecs_service" "client" {
     assign_public_ip = false // dont need to since i would be getting to this throuhg my alb
   }
 
+  service_registries {
+    registry_arn = aws_service_discovery_service.client.arn
+  }
+
   load_balancer {
     target_group_arn = module.load_balancer.myAlbGr.arn
     container_name   = "${var.name}-client-task-${var.environment}" // name of the client container

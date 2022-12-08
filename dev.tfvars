@@ -1,6 +1,6 @@
 region = "us-east-2"
 environment = "dev"
-name = "ecs-microservices"
+name = "ecs-microservice"
 
 //vpc
 cidr = "10.0.0.0/16"
