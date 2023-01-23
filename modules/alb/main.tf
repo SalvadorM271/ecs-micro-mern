@@ -17,7 +17,7 @@ resource "aws_alb_target_group" "main_gr" {
   port        = var.alb_tg_port //needs to be the port of my client
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
-  target_type = "ip" //needs to be ip otherwise wont work
+  target_type = "ip" //needs to be ip otherwise wont work try instance bc the ip is no static
 
   health_check {
     protocol            = "HTTP"
@@ -53,9 +53,9 @@ resource "aws_alb_listener" "http" {
     }
   }*/
 }
-/*
+
 # Redirect traffic to target group
-resource "aws_alb_listener" "https" {
+/*resource "aws_alb_listener" "https" {
     load_balancer_arn = aws_lb.main_lb.id
     port              = "443"
     protocol          = "HTTPS"
