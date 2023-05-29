@@ -37,18 +37,18 @@ resource "aws_ecs_task_definition" "client" {
   depends_on = [aws_iam_role.ecs_task_execution_role]
 }
 
-// hello microservice task definition
+// backend microservice task definition
 
-resource "aws_ecs_task_definition" "hello" {
-  family                   = "${var.name}-hello-task-${var.environment}" //task name
+resource "aws_ecs_task_definition" "backend" {
+  family                   = "${var.name}-backend-task-${var.environment}" //task name
   network_mode             = "awsvpc" // the only network mode that works with fargate
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.container_cpu
   memory                   = var.container_memory
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn // special rol for using ecs
   container_definitions = jsonencode([{
-    name        = "${var.name}-hello-task-${var.environment}"
-    image       = var.hello_container_image
+    name        = "${var.name}-backend-task-${var.environment}"
+    image       = var.backend_container_image
     // this determines wheather on not it would be restore on crash
     essential   = true
     // env variables that can be pass to the container
@@ -77,6 +77,6 @@ resource "aws_ecs_task_definition" "hello" {
 }
 
 
-// world microservice task definition
+
 
 

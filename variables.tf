@@ -28,7 +28,7 @@ variable client_container_image {}
 variable client_container_port {}
 variable client_container_host_port {}
 variable client_log_driver {}
-variable hello_container_image {}
+variable backend_container_image {}
 variable hello_log_driver {}
 variable server_container_port {}
 variable server_container_host_port {}

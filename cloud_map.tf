@@ -7,8 +7,8 @@ resource "aws_service_discovery_private_dns_namespace" "micro" {
 }
 
 
-resource "aws_service_discovery_service" "hello" {
-  name = "hello"
+resource "aws_service_discovery_service" "backend" {
+  name = "backend"
 
   dns_config {
     namespace_id = aws_service_discovery_private_dns_namespace.micro.id

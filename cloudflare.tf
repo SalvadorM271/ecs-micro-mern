@@ -7,9 +7,10 @@ provider "cloudflare" {
   api_key = jsondecode(data.aws_secretsmanager_secret_version.cloudflare_secret.secret_string)["cloudflare_key"] // api key here
 }
 
-output "username" {
-  value = jsondecode(data.aws_secretsmanager_secret_version.cloudflare_secret.secret_string)["cloudflare_email"]
-}
+# output "username" {
+#   value = jsondecode(data.aws_secretsmanager_secret_version.cloudflare_secret.secret_string)["cloudflare_email"]
+#   sensitive = true
+# }
 
 resource "cloudflare_record" "record" {
   zone_id = "eeae121d93d01bb9994aa24fd98b7389"

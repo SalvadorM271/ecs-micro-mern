@@ -34,12 +34,12 @@ resource "aws_ecs_service" "client" {
 }
 
 
-// service for hello container
+// service for backend container
 
-resource "aws_ecs_service" "hello" {
-  name                               = "${var.name}-hello-service-${var.environment}"
+resource "aws_ecs_service" "backend" {
+  name                               = "${var.name}-backend-service-${var.environment}"
   cluster                            = aws_ecs_cluster.main_ecs_cluster.id
-  task_definition                    = aws_ecs_task_definition.hello.arn
+  task_definition                    = aws_ecs_task_definition.backend.arn
   desired_count                      = var.service_desired_count // how many container i need deploy in my case one for each zone (2)
   deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent // i need at least half of the container to work since im deploying in to av zones
   deployment_maximum_percent         = var.deployment_maximum_percent // if there is to much traffic i want a max of 4 
@@ -56,7 +56,7 @@ resource "aws_ecs_service" "hello" {
   //no load balancer for this one, instead we have service_registries
 
   service_registries {
-    registry_arn = aws_service_discovery_service.hello.arn
+    registry_arn = aws_service_discovery_service.backend.arn
   }
 
   # task difinition must be ignore otherwise terraform may overwrite our app deployments since they will be do outside of terraform
