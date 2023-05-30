@@ -38,12 +38,14 @@ resource "aws_alb_listener" "http" {
   port              = "80"
   protocol          = "HTTP"
 
-  default_action {
-        target_group_arn = aws_alb_target_group.main_gr.id
-        type             = "forward"
-    }
+  # default_action {
+  #       target_group_arn = aws_alb_target_group.main_gr.id
+  #       type             = "forward"
+  #   }
 
-  /*default_action {
+  # if you need tou use http uncomment the default action above, and comment everything below
+
+  default_action {
     type = "redirect"
 
     redirect {
@@ -51,11 +53,11 @@ resource "aws_alb_listener" "http" {
       protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
-  }*/
+  }
 }
 
 # Redirect traffic to target group
-/*resource "aws_alb_listener" "https" {
+resource "aws_alb_listener" "https" {
     load_balancer_arn = aws_lb.main_lb.id
     port              = "443"
     protocol          = "HTTPS"
@@ -67,4 +69,4 @@ resource "aws_alb_listener" "http" {
         target_group_arn = aws_alb_target_group.main_gr.id
         type             = "forward"
     }
-}*/
+}
