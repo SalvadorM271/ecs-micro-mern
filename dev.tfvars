@@ -15,16 +15,16 @@ alb_tg_port = "80"//same as client
 alb_tg_matcher = "200"
 alb_tg_path = "/"
 // https listener
-alb_tls_cert_arn = "arn:aws:acm:us-east-1:153042419275:certificate/f7a37d88-6c33-4614-831d-26909a2e456f"
+alb_tls_cert_arn = "arn:aws:acm:us-east-1:438555236323:certificate/4501aa12-e24a-4d78-b938-447448ba6188"
 
 //task definition
 container_cpu = "0.5 vCPU"
 container_memory = "1GB"
-client_container_image = "153042419275.dkr.ecr.us-east-1.amazonaws.com/ecs_frontend:latest"
+client_container_image = "438555236323.dkr.ecr.us-east-1.amazonaws.com/ecs_frontend"
 client_container_port = "80"
 client_container_host_port = "80" //has to be the same bc network mode
 client_log_driver = "awslogs"
-backend_container_image = "153042419275.dkr.ecr.us-east-1.amazonaws.com/ecs_backend:latest"
+backend_container_image = "438555236323.dkr.ecr.us-east-1.amazonaws.com/ecs_backend"
 hello_log_driver = "awslogs"
 server_container_port = "5000"
 server_container_host_port = "5000"

@@ -1,5 +1,5 @@
 data "aws_secretsmanager_secret_version" "cloudflare_secret" {
-  secret_id = "arn:aws:secretsmanager:us-east-1:153042419275:secret:cloudflare-ZlOXvE"
+  secret_id = "arn:aws:secretsmanager:us-east-1:438555236323:secret:cloudflare-8ACs61"
 }
 
 provider "cloudflare" {
@@ -13,7 +13,7 @@ provider "cloudflare" {
 # }
 
 resource "cloudflare_record" "record" {
-  zone_id = "eeae121d93d01bb9994aa24fd98b7389"
+  zone_id = jsondecode(data.aws_secretsmanager_secret_version.cloudflare_secret.secret_string)["zone_id"] // zone id key here
   name = var.environment
   value = module.load_balancer.myDNS //load balancer  dns
   type = "CNAME"
