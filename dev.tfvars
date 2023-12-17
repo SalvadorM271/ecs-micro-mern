@@ -15,7 +15,7 @@ alb_tg_port = "80"//same as client
 alb_tg_matcher = "200"
 alb_tg_path = "/"
 // https listener
-alb_tls_cert_arn = "arn:aws:acm:us-east-1:438555236323:certificate/4501aa12-e24a-4d78-b938-447448ba6188"
+alb_tls_cert_arn = "arn:aws:acm:us-east-1:438555236323:certificate/782198c5-e64d-4dbc-81c5-79e7bac59bcb"
 
 //task definition
 container_cpu = "0.5 vCPU"

@@ -10,6 +10,7 @@ resource "aws_ecs_service" "client" {
   health_check_grace_period_seconds  = var.health_check_grace_period_seconds // how much time bf action is taken
   launch_type                        = "FARGATE" // what am i lauching ec2 or fargate
   scheduling_strategy                = "REPLICA"
+  enable_execute_command             = true // enable execute command for this service
 
   network_configuration {
     security_groups  = [aws_security_group.ecs_tasks_sg.id] // loop array and gets ids
@@ -46,6 +47,7 @@ resource "aws_ecs_service" "backend" {
   //health_check_grace_period_seconds  = var.health_check_grace_period_seconds // how much time bf action is taken
   launch_type                        = "FARGATE" // what am i lauching ec2 or fargate
   scheduling_strategy                = "REPLICA"
+  enable_execute_command             = true // enable execute command for this service
 
   network_configuration {
     security_groups  = [aws_security_group.ecs_tasks_sg.id] // loop array and gets ids

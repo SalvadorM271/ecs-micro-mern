@@ -7,6 +7,7 @@ resource "aws_ecs_task_definition" "client" {
   cpu                      = var.container_cpu
   memory                   = var.container_memory
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn // special rol for using ecs
+  task_role_arn            = aws_iam_role.ecs_ssm_role.arn // this rol is for the task to be able to interact with ssm
   container_definitions = jsonencode([{
     name        = "${var.name}-client-task-${var.environment}"
     image       = var.client_container_image
@@ -46,6 +47,7 @@ resource "aws_ecs_task_definition" "backend" {
   cpu                      = var.container_cpu
   memory                   = var.container_memory
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn // special rol for using ecs
+  task_role_arn            = aws_iam_role.ecs_ssm_role.arn // this rol is for the task to be able to interact with ssm
   container_definitions = jsonencode([{
     name        = "${var.name}-backend-task-${var.environment}"
     image       = var.backend_container_image
