@@ -1,3 +1,7 @@
+data "aws_secretsmanager_secret_version" "backend_secret" {
+  secret_id = "arn:aws:secretsmanager:us-east-1:438555236323:secret:ecsBackend-QEAsoy"
+}
+
 // client task definition
 
 resource "aws_ecs_task_definition" "client" {
@@ -54,7 +58,7 @@ resource "aws_ecs_task_definition" "backend" {
     // this determines wheather on not it would be restore on crash
     essential   = true
     // env variables that can be pass to the container
-    environment = [{"name": "ENVIRONMENT", "value": "${var.environment}"}] //this envs will be pass to the container to select deploy enviroment
+    environment = [{"name": "MONGODB_URI", "value": "${jsondecode(data.aws_secretsmanager_secret_version.backend_secret.secret_string)["MONGODB_URI"]}"}] //this envs will be pass to the container to select deploy enviroment
     // no port needed since it connects to the client trouhg internal network
     portMappings = [{
       protocol      = "tcp"
